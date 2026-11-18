@@ -1,4 +1,6 @@
 # Rocksmith 2014 en Linux (CachyOS/Arch) — PipeASIO + REAPER nativo
+Este script fue desarrollado con IA y no fue pensado para uso publico, fue diseñado especificamente para mi setup. Solo lo publico aqui para si alguien quiere hacer un setup similar
+pueda tener alguna base de como hacerlo y no quedarse perdido por meses como a mi me paso
 
 Setup para tocar guitarra con latencia baja: la señal entra por una interfaz
 USB, pasa por efectos en REAPER (nativo, sobre JACK/PipeWire) y llega al juego
