@@ -58,27 +58,6 @@ chmod +x setup-rocksmith-pipeasio.sh
 ./setup-rocksmith-pipeasio.sh
 ```
 
-## Las tres trampas que costaron encontrar
-
-1. **El `;` en las opciones de lanzamiento de Steam.** Steam ejecuta las
-   opciones con un shell: un punto y coma suelto parte la línea en dos y las
-   variables anteriores (`PROTON_USE_WOW64`, `WINEDLLPATH`) *desaparecen*.
-   El juego abre, pero RS_ASIO falla con
-   `cannot load pipeasio32.so: needs new WoW64 and WINEDLLPATH`.
-   Solución: comillas escapadas alrededor del **valor**:
-   `WINEDLLOVERRIDES="avrt,d3dx9_42=n,b;xinput1_3=b"`.
-   (Comillas alrededor de `NOMBRE=valor` también rompen todo: bash deja de
-   tratarlo como asignación y el juego directamente no abre.)
-
-2. **`avrt.dll` es el cargador de RS_ASIO.** Sin el proxy `avrt.dll` en la
-   carpeta del juego y sin `WINEDLLOVERRIDES=avrt=n,b`, Wine carga su avrt
-   interno, RS_ASIO nunca se inicializa y el juego suena por WASAPI vanilla
-   (el `RS_ASIO-log.txt` queda viejo — mira siempre su fecha).
-
-3. **Registrar por el runner, no por el wine del host.** `pipeasio-register`
-   con el wine del sistema re-estampa el prefijo para otra build de Wine.
-   Siempre con `WINE=umu-run PROTONPATH=<proton> GAMEID=umu-221680`.
-
 ## Verificación rápida
 
 ```sh
